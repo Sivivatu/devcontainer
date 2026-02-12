@@ -1,0 +1,15 @@
+{
+    "id": "postgres-client",
+    "version": "1.0.0",
+    "name": "PostgreSQL Client",
+    "description": "Installs the PostgreSQL client (psql) from the official APT repository.",
+    "documentationURL": "",
+    "options": {
+        "postgresVersion": {
+            "type": "string",
+            "default": "17",
+            "description": "Major version of the PostgreSQL client to install."
+        }
+    },
+    "installsAfter": []
+}
