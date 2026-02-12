@@ -1,0 +1,12 @@
+# hadolint configuration
+# https://github.com/hadolint/hadolint
+
+ignored:
+  # DL3008 – pin versions in apt-get install (we use --no-install-recommends and accept latest)
+  - DL3008
+  # DL3013 – pin versions in pip install (duckdb version floats with base)
+  - DL3013
+  # DL3003 – use WORKDIR to switch to a directory
+  - DL3003
+  # DL3059 – multiple consecutive RUN instructions (we group logically)
+  - DL3059

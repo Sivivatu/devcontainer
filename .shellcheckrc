@@ -1,0 +1,10 @@
+# shellcheck configuration
+# https://www.shellcheck.net/wiki/
+
+# Use bash as the default shell dialect
+shell=bash
+
+# Disable specific rules project-wide:
+# SC2034 – variable appears unused (false positives with sourced scripts)
+# SC1091 – not following sourced files (expected in feature scripts)
+disable=SC2034,SC1091
