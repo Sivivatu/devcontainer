@@ -1,0 +1,23 @@
+{
+    "id": "dbt-duckdb",
+    "version": "1.0.0",
+    "name": "dbt-core with DuckDB Adapter",
+    "description": "Installs dbt-core and the dbt-duckdb adapter into an isolated virtual environment.",
+    "documentationURL": "",
+    "options": {
+        "dbtCoreVersion": {
+            "type": "string",
+            "default": "1.9.1",
+            "description": "Version of dbt-core to install."
+        },
+        "dbtDuckdbVersion": {
+            "type": "string",
+            "default": "1.9.1",
+            "description": "Version of dbt-duckdb adapter to install."
+        }
+    },
+    "installsAfter": [],
+    "containerEnv": {
+        "PATH": "/opt/dbt/bin:${PATH}"
+    }
+}
