@@ -1,0 +1,25 @@
+{
+    "id": "k8s-tools",
+    "version": "1.0.0",
+    "name": "Kubernetes Tooling",
+    "description": "Installs kubectl, Helm, and Kustomize.",
+    "documentationURL": "",
+    "options": {
+        "kubectlVersion": {
+            "type": "string",
+            "default": "1.32.2",
+            "description": "Version of kubectl to install."
+        },
+        "helmVersion": {
+            "type": "string",
+            "default": "3.17.1",
+            "description": "Version of Helm to install."
+        },
+        "kustomizeVersion": {
+            "type": "string",
+            "default": "5.6.0",
+            "description": "Version of Kustomize to install."
+        }
+    },
+    "installsAfter": []
+}
