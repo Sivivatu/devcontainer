@@ -1,0 +1,14 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "remoteUser": "dev",
+    "containerUser": "dev",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash"
+            }
+        }
+    }
+}
