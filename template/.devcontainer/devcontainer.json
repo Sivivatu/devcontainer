@@ -1,0 +1,82 @@
+// =============================================================================
+// Example Project Devcontainer Configuration
+// =============================================================================
+//
+// This file references the personal base devcontainer image and layers
+// optional, composable features on top.
+//
+// HOW TO USE:
+//   1. Replace <your-user> with your container registry username/org.
+//   2. Enable or disable features by adding/removing entries below.
+//   3. Pin versions to ensure reproducible builds.
+//
+// =============================================================================
+{
+    "name": "My Project",
+
+    // -- Base image ----------------------------------------------------------
+    // Points to the pre-built personal base image.
+    // Pin the tag to a specific version for reproducibility.
+    "image": "ghcr.io/<your-user>/devcontainer-base:1.0.0",
+
+    // -- Composable features -------------------------------------------------
+    // Each feature is independently installable. Comment out or remove any
+    // features you do not need for this project.
+    "features": {
+        // dbt-core with DuckDB adapter
+        // Remove this block if your project does not use dbt.
+        "ghcr.io/<your-user>/devcontainer-features/dbt-duckdb:1.0.0": {
+            "dbtCoreVersion": "1.9.1",
+            "dbtDuckdbVersion": "1.9.1"
+        },
+
+        // Kubernetes tooling (kubectl, Helm, Kustomize)
+        // Remove this block if you do not work with Kubernetes.
+        "ghcr.io/<your-user>/devcontainer-features/k8s-tools:1.0.0": {
+            "kubectlVersion": "1.32.2",
+            "helmVersion": "3.17.1",
+            "kustomizeVersion": "5.6.0"
+        },
+
+        // PostgreSQL client (psql)
+        // Remove this block if you do not need psql.
+        "ghcr.io/<your-user>/devcontainer-features/postgres-client:1.0.0": {
+            "postgresVersion": "17"
+        }
+    },
+
+    // -- Container user ------------------------------------------------------
+    // Must match the non-root user created in the base image.
+    "remoteUser": "dev",
+    "containerUser": "dev",
+
+    // -- VS Code customisations ----------------------------------------------
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux": "bash",
+                "editor.formatOnSave": true
+            },
+            "extensions": [
+                // Add project-specific extensions here, e.g.:
+                // "ms-python.python",
+                // "innoveware.vscode-dbt-power-user"
+            ]
+        }
+    },
+
+    // -- Lifecycle scripts ----------------------------------------------------
+    // Uncomment to run commands at various stages:
+    // "postCreateCommand": "uv sync",
+    // "postStartCommand": "",
+    // "postAttachCommand": "",
+
+    // -- Mounts & ports -------------------------------------------------------
+    // "mounts": [],
+    // "forwardPorts": [],
+
+    // -- Environment variables ------------------------------------------------
+    "containerEnv": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+    }
+}
