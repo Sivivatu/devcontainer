@@ -112,7 +112,7 @@ Features are automatically published to GitHub Container Registry. Reference the
   "image": "ghcr.io/sivivatu/devcontainer/devcontainer-base:latest",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest",
+      "version": "os-provided",
       "ppa": false
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
@@ -144,7 +144,7 @@ Reference the published base image and features in your project's `.devcontainer
   "image": "ghcr.io/sivivatu/devcontainer/devcontainer-base:latest",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {
-      "version": "latest",
+      "version": "os-provided",
       "ppa": false
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
