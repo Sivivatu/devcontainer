@@ -9,6 +9,8 @@ A reusable base devcontainer image and a set of composable devcontainer features
 ```
 base/                        # Base devcontainer image (Dockerfile)
 features/
+  bun/                       # Bun JavaScript runtime feature
+  duckdb/                    # DuckDB CLI feature
   dbt-duckdb/                # dbt-core + DuckDB adapter feature
   k8s-tools/                 # kubectl, Helm, Kustomize feature
   postgres-client/           # PostgreSQL client (psql) feature
@@ -59,9 +61,9 @@ The base image (`base/Dockerfile`) includes:
 
 - **Ubuntu 24.04** foundation
 - **Python 3** + pip + [uv](https://github.com/astral-sh/uv)
-- **Bun** (JavaScript runtime)
-- **DuckDB** CLI and Python package
 - Essential CLI tools: git, curl, wget, jq, ripgrep, fd, make, openssl, ssh
+
+Bun, DuckDB, Kubernetes tooling, Postgres, and dbt are intentionally packaged as optional features so projects only install the tools they need.
 
 ### Using the Base Image
 
@@ -95,6 +97,8 @@ Each feature lives under `features/<name>/` and contains:
 
 | Feature            | Description                              |
 | ------------------ | ---------------------------------------- |
+| `bun`              | Bun JavaScript runtime and package manager |
+| `duckdb`           | DuckDB command-line client               |
 | `dbt-duckdb`       | dbt-core with the DuckDB adapter         |
 | `k8s-tools`        | kubectl, Helm, Kustomize                 |
 | `postgres-client`  | PostgreSQL client (`psql`)               |
@@ -107,6 +111,8 @@ Features are automatically published to GitHub Container Registry. Reference the
 {
   "image": "ghcr.io/<your-user>/devcontainer/devcontainer-base:latest",
   "features": {
+    "ghcr.io/<your-user>/devcontainer-features/bun:1": {},
+    "ghcr.io/<your-user>/devcontainer-features/duckdb:1": {},
     "ghcr.io/<your-user>/devcontainer-features/dbt-duckdb:1": {},
     "ghcr.io/<your-user>/devcontainer-features/k8s-tools:1": {}
   }
@@ -132,6 +138,9 @@ Reference the published base image and features in your project's `.devcontainer
   "name": "My Project",
   "image": "ghcr.io/<your-user>/devcontainer/devcontainer-base:latest",
   "features": {
+    "ghcr.io/<your-user>/devcontainer-features/duckdb:1": {
+      "duckdbVersion": "latest"
+    },
     "ghcr.io/<your-user>/devcontainer-features/dbt-duckdb:1": {
       "dbtCoreVersion": "1.9.1"
     },
@@ -172,4 +181,3 @@ See `template/.devcontainer/` for a complete example with all features.
 - **Dockerfiles**: Ubuntu 24.04 base, non-root `dev` user, cleaned apt cache
 - **Features**: Isolated installs in `/opt/<feature>/`, PATH configured in feature JSON
 - **Testing**: Every feature must have tests verifying installation and base tool preservation
-

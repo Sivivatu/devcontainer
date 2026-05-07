@@ -2,7 +2,7 @@
     "id": "dbt-duckdb",
     "version": "1.0.0",
     "name": "dbt-core with DuckDB Adapter",
-    "description": "Installs dbt-core and the dbt-duckdb adapter into an isolated virtual environment.",
+    "description": "Installs dbt-core and the dbt-duckdb adapter into an isolated virtual environment. Add the duckdb feature separately when you need the DuckDB CLI.",
     "documentationURL": "",
     "options": {
         "dbtCoreVersion": {
@@ -16,7 +16,7 @@
             "description": "Version of dbt-duckdb adapter to install."
         }
     },
-    "installsAfter": [],
+    "installsAfter": ["duckdb"],
     "containerEnv": {
         "PATH": "/opt/dbt/bin:${PATH}"
     }

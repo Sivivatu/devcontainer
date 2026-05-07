@@ -23,6 +23,18 @@
     // Each feature is independently installable. Comment out or remove any
     // features you do not need for this project.
     "features": {
+        // Bun JavaScript runtime and package manager
+        // Remove this block if your project does not use Bun.
+        "ghcr.io/<your-user>/devcontainer-features/bun:1.0.0": {
+            "bunVersion": "latest"
+        },
+
+        // DuckDB command-line client
+        // Remove this block if your project does not use DuckDB directly.
+        "ghcr.io/<your-user>/devcontainer-features/duckdb:1.0.0": {
+            "duckdbVersion": "latest"
+        },
+
         // dbt-core with DuckDB adapter
         // Remove this block if your project does not use dbt.
         "ghcr.io/<your-user>/devcontainer-features/dbt-duckdb:1.0.0": {
