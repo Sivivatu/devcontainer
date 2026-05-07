@@ -113,7 +113,7 @@ Features are automatically published to GitHub Container Registry. Reference the
   "features": {
     "ghcr.io/devcontainers/features/git:1": {
       "version": "latest",
-      "ppa": true
+      "ppa": false
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/sivivatu/devcontainer-features/bun:1": {},
@@ -143,6 +143,11 @@ Reference the published base image and features in your project's `.devcontainer
   "name": "My Project",
   "image": "ghcr.io/sivivatu/devcontainer/devcontainer-base:latest",
   "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": false
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/sivivatu/devcontainer-features/duckdb:1": {
       "duckdbVersion": "latest"
     },

@@ -5,7 +5,7 @@
     "features": {
         "ghcr.io/devcontainers/features/git:1": {
             "version": "latest",
-            "ppa": true
+            "ppa": false
         },
         "ghcr.io/devcontainers/features/github-cli:1": {}
     },
