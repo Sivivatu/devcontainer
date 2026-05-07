@@ -24,9 +24,10 @@
     // features you do not need for this project.
     "features": {
         // Git, managed by the official Dev Containers feature.
-        // ppa=false avoids keyserver-dependent PPA setup in restricted networks.
+        // Use an OS package so Debian-package dependencies, like gh -> git,
+        // resolve cleanly during feature installation.
         "ghcr.io/devcontainers/features/git:1": {
-            "version": "latest",
+            "version": "os-provided",
             "ppa": false
         },
 
