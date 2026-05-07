@@ -5,6 +5,8 @@
 #   make test                Run the full test suite (base + features)
 #   make test-base           Test the base image only
 #   make test-features       Test all features only
+#   make test-bun            Test the Bun feature
+#   make test-duckdb         Test the DuckDB feature
 #   make test-dbt-duckdb     Test a single feature
 #   make lint                Run all linters
 #   make fmt                 Format all files in-place
@@ -51,7 +53,7 @@ help: ## Show this help
 # Tests
 # =============================================================================
 
-.PHONY: test test-base test-features test-dbt-duckdb test-k8s-tools test-postgres-client
+.PHONY: test test-base test-features test-bun test-duckdb test-dbt-duckdb test-k8s-tools test-postgres-client
 
 test: ## Run the full test suite (base + all features)
 	@./tests/test.sh all
@@ -61,6 +63,12 @@ test-base: ## Test the base image only
 
 test-features: ## Test all features (without base tool checks)
 	@./tests/test.sh features
+
+test-bun: ## Test the bun feature
+	@./tests/test.sh bun
+
+test-duckdb: ## Test the duckdb feature
+	@./tests/test.sh duckdb
 
 test-dbt-duckdb: ## Test the dbt-duckdb feature
 	@./tests/test.sh dbt-duckdb
@@ -183,6 +191,8 @@ clean: ## Remove test images
 	@echo "Removing test images..."
 	@docker rmi -f \
 		devcontainer-base:test \
+		devcontainer-feature-bun:test \
+		devcontainer-feature-duckdb:test \
 		devcontainer-feature-dbt-duckdb:test \
 		devcontainer-feature-k8s-tools:test \
 		devcontainer-feature-postgres-client:test \
