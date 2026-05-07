@@ -61,9 +61,10 @@ The base image (`base/Dockerfile`) includes:
 
 - **Ubuntu 24.04** foundation
 - **Python 3** + pip + [uv](https://github.com/astral-sh/uv)
-- Essential CLI tools: curl, wget, jq, ripgrep, fd, make, openssl, ssh
+- Essential CLI tools: git, GitHub CLI (`gh`), curl, wget, jq, ripgrep, fd, make, openssl, ssh, zsh
+- [Starship](https://starship.rs/) prompt for interactive Zsh shells
 
-Git, the GitHub CLI, Bun, DuckDB, Kubernetes tooling, Postgres, and dbt are intentionally packaged as optional features so projects only install the tools they need.
+Bun, DuckDB, Kubernetes tooling, Postgres, and dbt are intentionally packaged as optional features so projects only install the tools they need.
 
 ### Using the Base Image
 
@@ -80,8 +81,8 @@ The base image is automatically published to GitHub Container Registry. Referenc
 If you need to build/publish manually:
 
 ```bash
-docker build -t ghcr.io/sivivatu/devcontainer-base:1.0.0 base/
-docker push ghcr.io/sivivatu/devcontainer-base:1.0.0
+docker build -t ghcr.io/sivivatu/devcontainer-base:1.1.0 base/
+docker push ghcr.io/sivivatu/devcontainer-base:1.1.0
 ```
 
 ## Features
@@ -111,11 +112,6 @@ Features are automatically published to GitHub Container Registry. Reference the
 {
   "image": "ghcr.io/sivivatu/devcontainer/devcontainer-base:latest",
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "os-provided",
-      "ppa": false
-    },
-    "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/sivivatu/devcontainer-features/bun:1": {},
     "ghcr.io/sivivatu/devcontainer-features/duckdb:1": {},
     "ghcr.io/sivivatu/devcontainer-features/dbt-duckdb:1": {},
@@ -143,11 +139,6 @@ Reference the published base image and features in your project's `.devcontainer
   "name": "My Project",
   "image": "ghcr.io/sivivatu/devcontainer/devcontainer-base:latest",
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {
-      "version": "os-provided",
-      "ppa": false
-    },
-    "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/sivivatu/devcontainer-features/duckdb:1": {
       "duckdbVersion": "latest"
     },

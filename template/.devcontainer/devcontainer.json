@@ -17,23 +17,12 @@
     // -- Base image ----------------------------------------------------------
     // Points to the pre-built personal base image.
     // Pin the tag to a specific version for reproducibility.
-    "image": "ghcr.io/<your-user>/devcontainer-base:1.0.0",
+    "image": "ghcr.io/<your-user>/devcontainer-base:1.1.0",
 
     // -- Composable features -------------------------------------------------
     // Each feature is independently installable. Comment out or remove any
     // features you do not need for this project.
     "features": {
-        // Git, managed by the official Dev Containers feature.
-        // Use an OS package so Debian-package dependencies, like gh -> git,
-        // resolve cleanly during feature installation.
-        "ghcr.io/devcontainers/features/git:1": {
-            "version": "os-provided",
-            "ppa": false
-        },
-
-        // GitHub CLI
-        "ghcr.io/devcontainers/features/github-cli:1": {},
-
         // Bun JavaScript runtime and package manager
         // Remove this block if your project does not use Bun.
         "ghcr.io/<your-user>/devcontainer-features/bun:1.0.0": {
@@ -77,7 +66,7 @@
     "customizations": {
         "vscode": {
             "settings": {
-                "terminal.integrated.defaultProfile.linux": "bash",
+                "terminal.integrated.defaultProfile.linux": "zsh",
                 "editor.formatOnSave": true
             },
             "extensions": [

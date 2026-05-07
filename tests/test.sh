@@ -163,6 +163,8 @@ test_base_tools() {
 
     # CLI tooling
     assert_cmd "${BASE_IMAGE}" "curl is installed" curl --version
+    assert_cmd "${BASE_IMAGE}" "git is installed" git --version
+    assert_cmd "${BASE_IMAGE}" "gh is installed" gh --version
     assert_cmd "${BASE_IMAGE}" "wget is installed" wget --version
     assert_cmd "${BASE_IMAGE}" "jq is installed" jq --version
     assert_cmd "${BASE_IMAGE}" "rg (ripgrep) is installed" rg --version
@@ -170,6 +172,8 @@ test_base_tools() {
     assert_cmd "${BASE_IMAGE}" "make is installed" make --version
     assert_cmd "${BASE_IMAGE}" "openssl is installed" openssl version
     assert_cmd "${BASE_IMAGE}" "ssh is installed" ssh -V
+    assert_cmd "${BASE_IMAGE}" "zsh is installed" zsh --version
+    assert_cmd "${BASE_IMAGE}" "starship is installed" starship --version
 
     # Python ecosystem
     assert_cmd "${BASE_IMAGE}" "python3 is installed" python3 --version
@@ -178,8 +182,6 @@ test_base_tools() {
     assert_cmd "${BASE_IMAGE}" "uv is installed" uv --version
 
     # Optional feature tools should not leak into the base image
-    assert_cmd_absent "${BASE_IMAGE}" "git is not installed in base" git
-    assert_cmd_absent "${BASE_IMAGE}" "gh is not installed in base" gh
     assert_cmd_absent "${BASE_IMAGE}" "bun is not installed in base" bun
     assert_cmd_absent "${BASE_IMAGE}" "duckdb is not installed in base" duckdb
 }
@@ -197,6 +199,10 @@ test_base_user() {
     # shellcheck disable=SC2016
     assert_output_contains "${BASE_IMAGE}" "locale is en_GB.UTF-8" "en_GB.UTF-8" \
         bash -c 'echo $LANG'
+    assert_output_contains "${BASE_IMAGE}" "dev shell is zsh" "/bin/zsh" \
+        getent passwd dev
+    assert_output_contains "${BASE_IMAGE}" "starship initialises in zsh" "starship init zsh" \
+        grep "starship init zsh" /etc/zsh/zshrc
 
     # Verify sudo access
     assert_cmd "${BASE_IMAGE}" "dev user has sudo" \
