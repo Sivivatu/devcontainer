@@ -1,0 +1,15 @@
+{
+    "id": "bun",
+    "version": "1.0.0",
+    "name": "Bun",
+    "description": "Installs the Bun JavaScript runtime and package manager.",
+    "documentationURL": "",
+    "options": {
+        "bunVersion": {
+            "type": "string",
+            "default": "latest",
+            "description": "Version of Bun to install, or latest."
+        }
+    },
+    "installsAfter": []
+}

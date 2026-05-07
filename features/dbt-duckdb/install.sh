@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # ---------------------------------------------------------
 # Feature: dbt-duckdb
-# Installs dbt-core and the dbt-duckdb adapter into a
-# dedicated virtual environment at /opt/dbt.
+# Installs dbt-core/dbt-duckdb into a dedicated virtual
+# environment at /opt/dbt.
 # ---------------------------------------------------------
 set -euo pipefail
 
@@ -11,7 +11,7 @@ DBT_DUCKDB_VERSION="${DBTDUCKDBVERSION:-1.9.1}"
 
 echo "Installing dbt-core ${DBT_CORE_VERSION} with dbt-duckdb ${DBT_DUCKDB_VERSION}..."
 
-# Ensure python3 and venv module are available
+# Ensure required system dependencies are available
 apt-get update -y
 apt-get install -y --no-install-recommends python3 python3-pip python3-venv
 rm -rf /var/lib/apt/lists/*

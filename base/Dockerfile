@@ -3,17 +3,15 @@
 # =============================================================================
 # Provides a common foundation for development containers:
 #   - Python + pip + uv
-#   - Bun (JavaScript runtime)
-#   - DuckDB (CLI + Python package)
 #   - Essential CLI tooling
 #
 # Build:
-#   docker build -t ghcr.io/<your-user>/devcontainer-base:1.0.0 .
+#   docker build -t ghcr.io/sivivatu/devcontainer-base:1.0.0 .
 # =============================================================================
 
 FROM ubuntu:24.04
 
-LABEL maintainer="dev"
+LABEL maintainer="sivivatu"
 LABEL org.opencontainers.image.description="Personal base devcontainer image"
 
 # Avoid interactive prompts during package installation
@@ -59,29 +57,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # uv – fast Python package/virtual-environment manager
 # -----------------------------------------------------------------------------
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
-
-# -----------------------------------------------------------------------------
-# Bun – JavaScript runtime
-# -----------------------------------------------------------------------------
-ARG BUN_VERSION=latest
-RUN curl -fsSL https://bun.sh/install | bash -s -- \
-    && mv /root/.bun/bin/bun /usr/local/bin/bun \
-    && ln -sf /usr/local/bin/bun /usr/local/bin/bunx \
-    && rm -rf /root/.bun
-
-# -----------------------------------------------------------------------------
-# DuckDB CLI
-# -----------------------------------------------------------------------------
-ARG DUCKDB_VERSION=1.2.1
-RUN ARCH="$(dpkg --print-architecture)" \
-    && curl -fsSL "https://github.com/duckdb/duckdb/releases/download/v${DUCKDB_VERSION}/duckdb_cli-linux-${ARCH}.zip" \
-       -o /tmp/duckdb.zip \
-    && unzip /tmp/duckdb.zip -d /usr/local/bin \
-    && chmod +x /usr/local/bin/duckdb \
-    && rm /tmp/duckdb.zip
-
-# DuckDB Python package
-RUN pip3 install --no-cache-dir --break-system-packages duckdb
 
 # -----------------------------------------------------------------------------
 # Non-root user

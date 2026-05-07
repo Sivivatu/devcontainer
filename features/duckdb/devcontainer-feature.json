@@ -1,0 +1,15 @@
+{
+    "id": "duckdb",
+    "version": "1.0.0",
+    "name": "DuckDB CLI",
+    "description": "Installs the DuckDB command-line client.",
+    "documentationURL": "",
+    "options": {
+        "duckdbVersion": {
+            "type": "string",
+            "default": "latest",
+            "description": "Version of DuckDB CLI to install, or latest."
+        }
+    },
+    "installsAfter": []
+}
