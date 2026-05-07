@@ -1,6 +1,6 @@
 # Personal Devcontainer Toolkit
 
-[![CI/CD Pipeline](https://github.com/<your-user>/devcontainer/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-user>/devcontainer/actions/workflows/ci.yml)
+[![CI/CD Pipeline](https://github.com/sivivatu/devcontainer/actions/workflows/ci.yml/badge.svg)](https://github.com/sivivatu/devcontainer/actions/workflows/ci.yml)
 
 A reusable base devcontainer image and a set of composable devcontainer features with automated CI/CD.
 
@@ -71,7 +71,7 @@ The base image is automatically published to GitHub Container Registry. Referenc
 
 ```json
 {
-  "image": "ghcr.io/<your-user>/devcontainer/devcontainer-base:latest"
+  "image": "ghcr.io/sivivatu/devcontainer/devcontainer-base:latest"
 }
 ```
 
@@ -80,8 +80,8 @@ The base image is automatically published to GitHub Container Registry. Referenc
 If you need to build/publish manually:
 
 ```bash
-docker build -t ghcr.io/<your-user>/devcontainer-base:1.0.0 base/
-docker push ghcr.io/<your-user>/devcontainer-base:1.0.0
+docker build -t ghcr.io/sivivatu/devcontainer-base:1.0.0 base/
+docker push ghcr.io/sivivatu/devcontainer-base:1.0.0
 ```
 
 ## Features
@@ -109,17 +109,17 @@ Features are automatically published to GitHub Container Registry. Reference the
 
 ```json
 {
-  "image": "ghcr.io/<your-user>/devcontainer/devcontainer-base:latest",
+  "image": "ghcr.io/sivivatu/devcontainer/devcontainer-base:latest",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {
       "version": "latest",
       "ppa": true
     },
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/<your-user>/devcontainer-features/bun:1": {},
-    "ghcr.io/<your-user>/devcontainer-features/duckdb:1": {},
-    "ghcr.io/<your-user>/devcontainer-features/dbt-duckdb:1": {},
-    "ghcr.io/<your-user>/devcontainer-features/k8s-tools:1": {}
+    "ghcr.io/sivivatu/devcontainer-features/bun:1": {},
+    "ghcr.io/sivivatu/devcontainer-features/duckdb:1": {},
+    "ghcr.io/sivivatu/devcontainer-features/dbt-duckdb:1": {},
+    "ghcr.io/sivivatu/devcontainer-features/k8s-tools:1": {}
   }
 }
 ```
@@ -131,7 +131,7 @@ Use the [devcontainer CLI](https://github.com/devcontainers/cli) to publish manu
 ```bash
 devcontainer features publish features/ \
   --registry ghcr.io \
-  --namespace <your-user>/devcontainer-features
+  --namespace sivivatu/devcontainer-features
 ```
 
 ## Usage
@@ -141,15 +141,15 @@ Reference the published base image and features in your project's `.devcontainer
 ```json
 {
   "name": "My Project",
-  "image": "ghcr.io/<your-user>/devcontainer/devcontainer-base:latest",
+  "image": "ghcr.io/sivivatu/devcontainer/devcontainer-base:latest",
   "features": {
-    "ghcr.io/<your-user>/devcontainer-features/duckdb:1": {
+    "ghcr.io/sivivatu/devcontainer-features/duckdb:1": {
       "duckdbVersion": "latest"
     },
-    "ghcr.io/<your-user>/devcontainer-features/dbt-duckdb:1": {
+    "ghcr.io/sivivatu/devcontainer-features/dbt-duckdb:1": {
       "dbtCoreVersion": "1.9.1"
     },
-    "ghcr.io/<your-user>/devcontainer-features/postgres-client:1": {}
+    "ghcr.io/sivivatu/devcontainer-features/postgres-client:1": {}
   },
   "customizations": {
     "vscode": {
