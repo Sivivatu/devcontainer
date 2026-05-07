@@ -162,7 +162,6 @@ test_base_tools() {
     log_section "Base Image – Tool Verification"
 
     # CLI tooling
-    assert_cmd "${BASE_IMAGE}" "git is installed" git --version
     assert_cmd "${BASE_IMAGE}" "curl is installed" curl --version
     assert_cmd "${BASE_IMAGE}" "wget is installed" wget --version
     assert_cmd "${BASE_IMAGE}" "jq is installed" jq --version
@@ -179,6 +178,8 @@ test_base_tools() {
     assert_cmd "${BASE_IMAGE}" "uv is installed" uv --version
 
     # Optional feature tools should not leak into the base image
+    assert_cmd_absent "${BASE_IMAGE}" "git is not installed in base" git
+    assert_cmd_absent "${BASE_IMAGE}" "gh is not installed in base" gh
     assert_cmd_absent "${BASE_IMAGE}" "bun is not installed in base" bun
     assert_cmd_absent "${BASE_IMAGE}" "duckdb is not installed in base" duckdb
 }
@@ -255,7 +256,6 @@ test_feature_bun() {
 
     # Base tools should still work after feature install
     assert_cmd "${tag}" "base python3 still works" python3 --version
-    assert_cmd "${tag}" "base git still works" git --version
 }
 
 # -----------------------------------------------------------------------------
@@ -271,7 +271,6 @@ test_feature_duckdb() {
 
     # Base tools should still work after feature install
     assert_cmd "${tag}" "base python3 still works" python3 --version
-    assert_cmd "${tag}" "base git still works" git --version
 }
 
 # -----------------------------------------------------------------------------
@@ -292,7 +291,6 @@ test_feature_dbt_duckdb() {
 
     # Base tools should still work after feature install
     assert_cmd "${tag}" "base python3 still works" python3 --version
-    assert_cmd "${tag}" "base git still works" git --version
 }
 
 # -----------------------------------------------------------------------------
@@ -316,7 +314,6 @@ test_feature_k8s_tools() {
 
     # Base tools should still work
     assert_cmd "${tag}" "base python3 still works" python3 --version
-    assert_cmd "${tag}" "base git still works" git --version
 }
 
 # -----------------------------------------------------------------------------
@@ -334,7 +331,6 @@ test_feature_postgres_client() {
 
     # Base tools should still work
     assert_cmd "${tag}" "base python3 still works" python3 --version
-    assert_cmd "${tag}" "base git still works" git --version
 }
 
 # -----------------------------------------------------------------------------
@@ -394,7 +390,6 @@ EOF
     # Base tools survive all features
     assert_cmd "${tag}" "python3 still works" python3 --version
     assert_cmd "${tag}" "uv still works" uv --version
-    assert_cmd "${tag}" "git still works" git --version
 }
 
 # -----------------------------------------------------------------------------

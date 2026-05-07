@@ -61,9 +61,9 @@ The base image (`base/Dockerfile`) includes:
 
 - **Ubuntu 24.04** foundation
 - **Python 3** + pip + [uv](https://github.com/astral-sh/uv)
-- Essential CLI tools: git, curl, wget, jq, ripgrep, fd, make, openssl, ssh
+- Essential CLI tools: curl, wget, jq, ripgrep, fd, make, openssl, ssh
 
-Bun, DuckDB, Kubernetes tooling, Postgres, and dbt are intentionally packaged as optional features so projects only install the tools they need.
+Git, the GitHub CLI, Bun, DuckDB, Kubernetes tooling, Postgres, and dbt are intentionally packaged as optional features so projects only install the tools they need.
 
 ### Using the Base Image
 
@@ -111,6 +111,11 @@ Features are automatically published to GitHub Container Registry. Reference the
 {
   "image": "ghcr.io/<your-user>/devcontainer/devcontainer-base:latest",
   "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": true
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/<your-user>/devcontainer-features/bun:1": {},
     "ghcr.io/<your-user>/devcontainer-features/duckdb:1": {},
     "ghcr.io/<your-user>/devcontainer-features/dbt-duckdb:1": {},
