@@ -2,19 +2,12 @@
     "build": {
         "dockerfile": "Dockerfile"
     },
-    "features": {
-        "ghcr.io/devcontainers/features/git:1": {
-            "version": "os-provided",
-            "ppa": false
-        },
-        "ghcr.io/devcontainers/features/github-cli:1": {}
-    },
     "remoteUser": "dev",
     "containerUser": "dev",
     "customizations": {
         "vscode": {
             "settings": {
-                "terminal.integrated.defaultProfile.linux": "bash"
+                "terminal.integrated.defaultProfile.linux": "zsh"
             }
         }
     }
