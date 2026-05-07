@@ -23,6 +23,16 @@
     // Each feature is independently installable. Comment out or remove any
     // features you do not need for this project.
     "features": {
+        // Git, managed by the official Dev Containers feature.
+        // ppa=false avoids keyserver-dependent PPA setup in restricted networks.
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": false
+        },
+
+        // GitHub CLI
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+
         // Bun JavaScript runtime and package manager
         // Remove this block if your project does not use Bun.
         "ghcr.io/<your-user>/devcontainer-features/bun:1.0.0": {
